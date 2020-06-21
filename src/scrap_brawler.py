@@ -2,12 +2,12 @@ import scrapy
 from scrapy.crawler import CrawlerProcess, Crawler
 
 
-class QuotesSpider(scrapy.Spider):
+class BrawlerSpider(scrapy.Spider):
 
     name = 'brawler'
 
-    def __init__(self, *args, **kwargs):
-        brawler = args[1]["brawler"]
+    def __init__(self, brawler, *args, **kwargs):
+        # brawler = kwargs["brawler_name"]
         self.start_urls = [
             f'https://brawlstars.fandom.com/wiki/{brawler}'
         ]
@@ -62,17 +62,16 @@ class QuotesSpider(scrapy.Spider):
                 }
             }
 
-
-process = CrawlerProcess({
-    'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)',
-    'ITEM_PIPELINES': {'pipelines.MyJsonPipeline': 300}
-})
-
-crawler = Crawler(QuotesSpider, {
-    'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)',
-    'ITEM_PIPELINES': {'pipelines.MyJsonPipeline': 300},
-    'BRAWLER': 'Colt'
-})
-
-process.crawl(crawler, ["brawler", {"brawler": "Bo"}])
-process.start()
+# process = CrawlerProcess({
+#     'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)',
+#     'ITEM_PIPELINES': {'pipelines.MyJsonPipeline': 300}
+# })
+#
+# crawler = Crawler(BrawlerSpider, {
+#     'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)',
+#     'ITEM_PIPELINES': {'pipelines.MyJsonPipeline': 300},
+#     'BRAWLER': 'Colt'
+# })
+#
+# process.crawl(crawler, "brawler", brawler_name="Bo")
+# process.start()

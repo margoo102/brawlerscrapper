@@ -8,11 +8,11 @@ class MyJsonPipeline(object):
         self.exporter = JsonItemExporter(self.file, encoding='utf-8', ensure_ascii=False)
         self.exporter.start_exporting()
 
-    def from_settings(self):
-        self.file = open("out/brawlers.json", 'wb')
-        self.exporter = JsonItemExporter(self.file, encoding='utf-8', ensure_ascii=False)
-        self.exporter.start_exporting()
-        return self
+    # def from_settings(self):
+    #     self.file = open("out/brawlers.json", 'wb')
+    #     self.exporter = JsonItemExporter(self.file, encoding='utf-8', ensure_ascii=False)
+    #     self.exporter.start_exporting()
+    #     return self
 
     def close_spider(self, spider):
         self.exporter.finish_exporting()
